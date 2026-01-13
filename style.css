@@ -276,4 +276,11 @@ main section #container-search {
     main section {
         width: 100%;
     }
+    #searchBook{
+        flex-direction: column;
+        gap: 10px;
+    }
+    #searchBook > button {
+        max-width: 100%;
+    }
 }

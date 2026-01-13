@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const searchFormBook = document.getElementById('searchBook');
     searchFormBook.addEventListener('submit', function(event){
         const searchTitle = document.getElementById('searchBookTitle').value;
-        searchBook(searchTitle);
+        const finalSearchTitle = searchTitle.uppercase() || searchTitle.lowercase();
+        searchBook(finalSearchTitle);
 
         event.preventDefault();
     });
@@ -466,6 +467,8 @@ function searchBook(searchTitle){
             // memanggil fungsi untuk tombol baca ulang
             reReadedButton.addEventListener('click', function() {
                 reReadedItemBook(bookTarget.id);
+
+                containerBookId.style.display = "none";
             })
 
             // Tombol Hapus
@@ -479,6 +482,8 @@ function searchBook(searchTitle){
             // memanggil fungsi delete
             bookItemDeleteButton.addEventListener('click', function() {
                 deleteItemBook(bookTarget.id);
+
+                containerBookId.style.display = "none";
             })
 
             // button Edit
@@ -492,6 +497,8 @@ function searchBook(searchTitle){
             // memanggil fungsi untuk tombol edit buku
             bookItemEditButton.addEventListener('click', function() {
                 editItemBook(bookTarget.id);
+
+                containerBookId.style.display = "none";
             })
         } else {
             // tombol selesai
@@ -505,6 +512,8 @@ function searchBook(searchTitle){
             // memanggil fungsi untuk tombol baca ulang
             bookItemIsCompleteButton.addEventListener('click', function() {
                 readedItemBook(bookTarget.id);
+
+                containerBookId.style.display = "none";
             })
 
             // Tombol Hapus
@@ -518,6 +527,8 @@ function searchBook(searchTitle){
             // memanggil fungsi delete
             bookItemDeleteButton.addEventListener('click', function() {
                 deleteItemBook(bookTarget.id);
+
+                containerBookId.style.display = "none";
             })
 
             // button Edit
@@ -531,6 +542,8 @@ function searchBook(searchTitle){
             // memanggil fungsi untuk tombol edit buku
             bookItemEditButton.addEventListener('click', function() {
                 editItemBook(bookTarget.id);
+
+                containerBookId.style.display = "none";
             })
         }
 
@@ -541,7 +554,7 @@ function searchBook(searchTitle){
 
 function searchingBook(bookTitle) {
     for(const bookItem of books){
-        if (bookItem.title == bookTitle) {
+        if (bookItem.title.toLowerCase() === bookTitle.toLowerCase()) {
             return bookItem;
         }
     }
