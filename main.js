@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const popupContainer = document.getElementById('section-edit-form');
     popupContainer.style.display ="none";
+
+    // load local storage untuk dimasukan ke object
+    if(isStorageExist()){
+        loadDataFromStorage();
+    }
 })
 
 /**
@@ -54,6 +59,7 @@ function addBook(){
     books.push(bookObject);
 
     document.dispatchEvent(new Event(RENDER_EVENT))
+    saveData();
 }
 
 // fungsi untuk membuat object
@@ -222,6 +228,8 @@ function makeBook (bookObject){
  * 4. 
  */
 document.addEventListener(RENDER_EVENT, function(){
+
+
     // container untuk menampilkan buku yang belum dibaca
     const unReadBookList = document.getElementById('incompleteBookList');
     unReadBookList.innerHTML = ''; //untuk memastikan container menampilkan element html kosong
@@ -271,6 +279,7 @@ function readedItemBook(bookId) {
 
     // render ulang object
     document.dispatchEvent(new Event (RENDER_EVENT));
+    saveData();
 }
 
 // fungsi untuk tombol baca ulang
@@ -283,6 +292,7 @@ function reReadedItemBook(bookId){
     bookTarget.isRead = false;
 
     document.dispatchEvent(new Event (RENDER_EVENT));
+    saveData();
 }
 
 // diperlukan fungsi findBook untuk menemukan target dari object
@@ -303,6 +313,7 @@ function deleteItemBook(bookId) {
     if(bookTarget === -1) return;
     books.splice(bookTarget,1);
     document.dispatchEvent(new Event (RENDER_EVENT));
+    saveData();
 }
 
 // fungsi untuk mencari index
@@ -371,6 +382,7 @@ function editItemBook (bookId) {
         sectionAlert.style.display = "block";
 
         document.dispatchEvent(new Event (RENDER_EVENT));
+        saveData();
     };
 
 }
@@ -552,11 +564,46 @@ function searchBook(searchTitle){
     }
 }
 
-function searchingBook(bookTitle) {
+function searchingBook(searchTitle) {
     for(const bookItem of books){
-        if (bookItem.title.toLowerCase() === bookTitle.toLowerCase()) {
+        if (bookItem.title == searchTitle) {
             return bookItem;
         }
     }
     return null;
+}
+
+
+// safe di local storage
+function saveData() {
+    if (isStorageExist()){
+        const parsed = JSON.stringify(books);
+        localStorage.setItem(STORAGE_KEY, parsed);
+        document.dispatchEvent(new Event(SAVED_EVENT));
+    }
+}
+
+const SAVED_EVENT = 'saved-book';
+const STORAGE_KEY = 'book-storage';
+
+function isStorageExist(){
+    if (typeof(Storage) === undefined) {
+        alert('Browser tidak mendukung localstorage');
+        return false;
+    }
+
+    return true;
+}
+
+function loadDataFromStorage(){
+    const serializedData = localStorage.getItem(STORAGE_KEY);
+    let data = JSON.parse(serializedData);
+
+    if(data !== null){
+        for (const book of data){
+            books.push(book);
+        }
+    }
+
+    document.dispatchEvent(new Event(RENDER_EVENT));
 }
