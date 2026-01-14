@@ -50,11 +50,11 @@ function idGenerator(){
 function addBook(){
     const bookTitle = document.getElementById('bookFormTitle').value;
     const bookAuthor = document.getElementById('bookFormAuthor').value;
-    const bookYear = document.getElementById('bookFormYear').value;
-    const isRead = document.getElementById('bookFormIsComplete').checked;
+    const bookYear = Number(document.getElementById('bookFormYear').value);
+    const isComplete = document.getElementById('bookFormIsComplete').checked;
     const bookId = idGenerator();
 
-    const bookObject = generateBookObject(bookId, bookTitle, bookAuthor, bookYear, isRead)
+    const bookObject = generateBookObject(bookId, bookTitle, bookAuthor, bookYear, isComplete)
     books.push(bookObject);
 
     document.dispatchEvent(new Event(RENDER_EVENT))
@@ -62,13 +62,13 @@ function addBook(){
 }
 
 // fungsi untuk membuat object
-function generateBookObject (id, title, author, year, isRead) {
+function generateBookObject (id, title, author, year, isComplete) {
     return {
         id,
         title,
         author,
         year,
-        isRead
+        isComplete
     }
 }
 
@@ -132,7 +132,7 @@ function makeBook (bookObject){
     // menggabungkan text judul author tahun dan tombol action container ke dalam container utama
     containerBookId.append(bookItemTitle, bookItemAuthor, bookItemYear, buttonListContainer);
 
-    if (bookObject.isRead) {
+    if (bookObject.isComplete) {
 
         const reReadedButton = bookItemIsCompleteButton;
 
@@ -223,11 +223,10 @@ function makeBook (bookObject){
 /**
  * 1. ini adalah event listener untuk merender object
  * 2. Event yang digunakan adalah custom event
- * 3. Event listener ini akan membagi object ke kontainer sesuai dengan status isRead didalam object
+ * 3. Event listener ini akan membagi object ke kontainer sesuai dengan status isComplete didalam object
  * 4. 
  */
 document.addEventListener(RENDER_EVENT, function(){
-
 
     // container untuk menampilkan buku yang belum dibaca
     const unReadBookList = document.getElementById('incompleteBookList');
@@ -237,11 +236,11 @@ document.addEventListener(RENDER_EVENT, function(){
     const readedBookList = document.getElementById('completeBookList');
     readedBookList.innerHTML = ''; //untuk memastikan container menampilkan element html kosong
 
-    // kondisi untuk distribusi object berdasarkan value isRead
+    // kondisi untuk distribusi object berdasarkan value isComplete
     for (const bookItem of books) {
         const bookElement = makeBook(bookItem);
 
-        if(!bookItem.isRead){
+        if(!bookItem.isComplete){
             unReadBookList.append(bookElement);
         } else {
             readedBookList.append(bookElement);
@@ -273,8 +272,8 @@ function readedItemBook(bookId) {
     // jika target tidak ditemukan maka program berhenti
     if (bookTarget == null) return;
 
-    // jika ditemukan ganti nilai dari isRead
-    bookTarget.isRead = true;
+    // jika ditemukan ganti nilai dari isComplete
+    bookTarget.isComplete = true;
 
     // render ulang object
     document.dispatchEvent(new Event (RENDER_EVENT));
@@ -288,7 +287,7 @@ function reReadedItemBook(bookId){
 
     if (bookTarget == null) return;
 
-    bookTarget.isRead = false;
+    bookTarget.isComplete = false;
 
     document.dispatchEvent(new Event (RENDER_EVENT));
     saveData();
@@ -358,7 +357,7 @@ function editItemBook (bookId) {
     editYearRecent.placeholder = bookTarget.year;
 
     const isReadRecent = document.getElementById('editBookFormIsComplete');
-    isReadRecent.checked = bookTarget.isRead;
+    isReadRecent.checked = bookTarget.isComplete;
 
     formEdit.onsubmit = function(event){
         event.preventDefault();
@@ -370,7 +369,7 @@ function editItemBook (bookId) {
 
         books = books.map(book => {
             if (book.id === bookTarget.id) {
-                return {...book, title:editTitleValue, author: editAuthorValue, year:editYearValue, isRead: isReadValue
+                return {...book, title:editTitleValue, author: editAuthorValue, year:editYearValue, isComplete: isReadValue
                 }
             };
 
@@ -463,7 +462,7 @@ function searchBook(searchTitle){
 
         resultContainer.append(containerBookId);
 
-        if (bookTarget.isRead) {
+        if (bookTarget.isComplete) {
 
             const reReadedButton = bookItemIsCompleteButton;
 
