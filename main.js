@@ -142,7 +142,7 @@ function makeBook (bookObject){
         reReadIcon.classList.add('fa-solid', 'fa-rotate-left');
 
         // memasukan icon kedalam button
-        bookItemIsCompleteButton.append(reReadIcon, 'Baca Ulang');
+        bookItemIsCompleteButton.append(reReadIcon, 'Ulang');
 
         // memanggil fungsi untuk tombol baca ulang
         reReadedButton.addEventListener('click', function() {
@@ -155,7 +155,7 @@ function makeBook (bookObject){
         deleteIconButton.classList.add('fa-solid', 'fa-trash');
 
         // memasukan icon kedalam tombol delete
-        bookItemDeleteButton.append(deleteIconButton, 'Hapus Buku');
+        bookItemDeleteButton.append(deleteIconButton, 'Hapus');
 
         // memanggil fungsi delete
         bookItemDeleteButton.addEventListener('click', function() {
@@ -168,7 +168,7 @@ function makeBook (bookObject){
         editIconButton.classList.add('fa-solid', 'fa-pencil');
 
         // memasukan icon ke dalam tombol edit
-        bookItemEditButton.append(editIconButton, 'Edit Buku');
+        bookItemEditButton.append(editIconButton, 'Edit');
 
         // memanggil fungsi untuk tombol edit buku
         bookItemEditButton.addEventListener('click', function() {
@@ -181,7 +181,7 @@ function makeBook (bookObject){
         ReadedIcon.classList.add('fa-solid', 'fa-check');
 
         // memasukan icon kedalam button
-        bookItemIsCompleteButton.append(ReadedIcon, 'Selesai Baca');
+        bookItemIsCompleteButton.append(ReadedIcon, 'Selesai');
 
         // memanggil fungsi untuk tombol baca ulang
         bookItemIsCompleteButton.addEventListener('click', function() {
@@ -194,7 +194,7 @@ function makeBook (bookObject){
         deleteIconButton.classList.add('fa-solid', 'fa-trash');
 
         // memasukan icon kedalam tombol delete
-        bookItemDeleteButton.append(deleteIconButton, 'Hapus Buku');
+        bookItemDeleteButton.append(deleteIconButton, 'Hapus');
 
         // memanggil fungsi delete
         bookItemDeleteButton.addEventListener('click', function() {
@@ -207,7 +207,7 @@ function makeBook (bookObject){
         editIconButton.classList.add('fa-solid', 'fa-pencil');
 
         // memasukan icon ke dalam tombol edit
-        bookItemEditButton.append(editIconButton, 'Edit Buku');
+        bookItemEditButton.append(editIconButton, 'Edit');
 
         // memanggil fungsi untuk tombol edit buku
         bookItemEditButton.addEventListener('click', function() {
@@ -473,7 +473,7 @@ function searchBook(searchTitle){
             reReadIcon.classList.add('fa-solid', 'fa-rotate-left');
 
             // memasukan icon kedalam button
-            bookItemIsCompleteButton.append(reReadIcon, 'Baca Ulang');
+            bookItemIsCompleteButton.append(reReadIcon, 'Ulangi');
 
             // memanggil fungsi untuk tombol baca ulang
             reReadedButton.addEventListener('click', function() {
@@ -488,7 +488,7 @@ function searchBook(searchTitle){
             deleteIconButton.classList.add('fa-solid', 'fa-trash');
 
             // memasukan icon kedalam tombol delete
-            bookItemDeleteButton.append(deleteIconButton, 'Hapus Buku');
+            bookItemDeleteButton.append(deleteIconButton, 'Hapus');
 
             // memanggil fungsi delete
             bookItemDeleteButton.addEventListener('click', function() {
@@ -503,7 +503,7 @@ function searchBook(searchTitle){
             editIconButton.classList.add('fa-solid', 'fa-pencil');
 
             // memasukan icon ke dalam tombol edit
-            bookItemEditButton.append(editIconButton, 'Edit Buku');
+            bookItemEditButton.append(editIconButton, 'Edit');
 
             // memanggil fungsi untuk tombol edit buku
             bookItemEditButton.addEventListener('click', function() {
@@ -518,7 +518,7 @@ function searchBook(searchTitle){
             ReadedIcon.classList.add('fa-solid', 'fa-check');
 
             // memasukan icon kedalam button
-            bookItemIsCompleteButton.append(ReadedIcon, 'Selesai Baca');
+            bookItemIsCompleteButton.append(ReadedIcon, 'Selesai');
 
             // memanggil fungsi untuk tombol baca ulang
             bookItemIsCompleteButton.addEventListener('click', function() {
@@ -533,7 +533,7 @@ function searchBook(searchTitle){
             deleteIconButton.classList.add('fa-solid', 'fa-trash');
 
             // memasukan icon kedalam tombol delete
-            bookItemDeleteButton.append(deleteIconButton, 'Hapus Buku');
+            bookItemDeleteButton.append(deleteIconButton, 'Hapus');
 
             // memanggil fungsi delete
             bookItemDeleteButton.addEventListener('click', function() {
@@ -548,7 +548,7 @@ function searchBook(searchTitle){
             editIconButton.classList.add('fa-solid', 'fa-pencil');
 
             // memasukan icon ke dalam tombol edit
-            bookItemEditButton.append(editIconButton, 'Edit Buku');
+            bookItemEditButton.append(editIconButton, 'Edit');
 
             // memanggil fungsi untuk tombol edit buku
             bookItemEditButton.addEventListener('click', function() {
