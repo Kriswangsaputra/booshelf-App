@@ -19,8 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const searchFormBook = document.getElementById('searchBook');
     searchFormBook.addEventListener('submit', function(event){
         const searchTitle = document.getElementById('searchBookTitle').value;
-        const finalSearchTitle = searchTitle.uppercase() || searchTitle.lowercase();
-        searchBook(finalSearchTitle);
+        searchBook(searchTitle);
 
         event.preventDefault();
     });
@@ -566,7 +565,7 @@ function searchBook(searchTitle){
 
 function searchingBook(searchTitle) {
     for(const bookItem of books){
-        if (bookItem.title == searchTitle) {
+        if (bookItem.title.toLowerCase() == searchTitle.toLowerCase()) {
             return bookItem;
         }
     }
